@@ -273,3 +273,13 @@ iframe{
 }
 
 
+#dev-sign{
+    position: absolute;
+    display: block;
+    top: 2px;
+    left: 2px;
+    color: #D7132E;
+    font-family: monospace;
+    font-size: 12px;
+}
+
