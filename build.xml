@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--
-    Ant build file for jQ-Probe
-    
-    Adam Horcica, adam@horcica.cz
--->
 <project name="jQ-Probe" default="pub" basedir=".">
 
     <description>
-        JQ-Probe build script
+    JQ-Probe build script
     </description>
     
     <property name="php" location="c:/cmd/php/php.exe" />
@@ -28,7 +23,7 @@
     <!-- Targets -->
     
     
-    <target name="pub" description="Prepare files for mail" depends="check, git.info">
+    <target name="pub" description="Prepare files for publication" depends="check, git.info">
     
         <mkdir dir="${out}" />
         
@@ -41,11 +36,17 @@
             </fileset>
         </copy>
         
+        <!-- version info update -->
         <concat destfile="${out}/version" append="no">
             <filelist dir="${src}" files="version"/>
             <footer>-dev [${git.hash}] (${now})</footer>
         </concat>
         <loadfile property="version" srcFile="${out}/version" />
+                
+        <!-- dev sign -->
+        <concat destfile="${out}/core/tpl/index.tpl.php" append="yes">
+            &lt;span id="dev-sign"&gt;test version ${version}&lt;/span&gt;
+        </concat>
         
         <echo>Published version: ${version} </echo>
         
@@ -61,9 +62,11 @@
         <echo>Git hash: ${git.hash}</echo>
     </target>
     
-    <target name="check" depends="check.php" />
     
-    <target name="check.php" description="PHP syntax check">
+    <target name="check" description="Static analysis of code" depends="check.php" />
+    
+    
+    <target name="check.php">
         <exec executable="${php}">
             <arg value="-v"/>
         </exec>
@@ -76,7 +79,22 @@
     </target>
     
     
-    <target name="clean" description="Remove all output file">
+    <target name="deploy" description="Deploy published version to server" depends="clean, pub, deploy.ftp" />
+    
+    
+    <target name="deploy.ftp">
+        
+        <fail unless="ftp.user" message="FTP credential (user) is missing" />
+        <fail unless="ftp.pass" message="FTP credential (pass) is missing"  />
+        
+        <ftp server="jslab.net" userid="${ftp.user}" password="${ftp.pass}" verbose="yes" passive="yes" newer="yes" timediffauto="yes">
+            <fileset dir="${out}"/>            
+        </ftp>
+    
+    </target>
+    
+    
+    <target name="clean" description="Remove all output files">
         <delete dir="${out}" includeEmptyDirs="true" />
     </target>
 
