@@ -6,6 +6,7 @@
     </description>
     
     <property name="php" location="c:/cmd/php/php.exe" />
+    <property name="git" location="git" />
     
     <!-- Directories -->
     <property name="src" location="src"/>
@@ -54,7 +55,7 @@
     
     
     <target name="git.info">
-        <exec executable="git" outputproperty="git.hash" failonerror="true">
+        <exec executable="${git}" outputproperty="git.hash" failonerror="true">
             <arg value="log" />
             <arg value="--pretty=%h" />
             <arg value="-1" />
@@ -84,10 +85,11 @@
     
     <target name="deploy.ftp">
         
+        <fail unless="ftp.server" message="FTP credential (server) is missing" />
         <fail unless="ftp.user" message="FTP credential (user) is missing" />
         <fail unless="ftp.pass" message="FTP credential (pass) is missing"  />
         
-        <ftp server="jslab.net" userid="${ftp.user}" password="${ftp.pass}" verbose="yes" passive="yes" newer="yes" timediffauto="yes">
+        <ftp server="${ftp.server}" userid="${ftp.user}" password="${ftp.pass}" verbose="yes" passive="yes" newer="yes" timediffauto="yes">
             <fileset dir="${out}"/>            
         </ftp>
     
