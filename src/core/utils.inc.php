@@ -39,3 +39,9 @@
     return "libs/" . $lib . ".js";
   }
   
+  function get_version()
+  {
+    $ver = @file_get_contents('version');
+    return $ver === false ? 'unknown' : trim($ver);
+  }
+  

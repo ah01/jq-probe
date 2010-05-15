@@ -114,6 +114,7 @@ h3{
 #help{
   display: none;
   margin: 0 0 10px 0;
+  position: relative;
 }
 
 #help p{
@@ -127,6 +128,14 @@ h3{
 
 #help p.intro{
   font-style: italic;
+}
+
+#help p.version{
+    font-size: 75%;
+    margin: 0;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
 }
 
 /* --- CODE --- */

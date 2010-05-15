@@ -40,7 +40,7 @@
       <div class="content roundBottom">
       
         <?php include dirname(__FILE__) . "/help." . $current_lang . ".html"; ?>
-              
+        <p class="version">Ver: <?= get_version() ?>
       </div>
     </div>
     
