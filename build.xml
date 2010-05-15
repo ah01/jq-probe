@@ -21,17 +21,47 @@
     
     <!-- Misc -->
     <tstamp>
-        <format property="date" pattern="dd.MM.yyyy HH:mm:ss" />
+        <format property="now" pattern="dd.MM.yyyy HH:mm:ss" />
     </tstamp>
   
   
     <!-- Targets -->
     
     
-    <target name="pub" description="Prepare files for mail">
+    <target name="pub" description="Prepare files for mail" depends="check, git.info">
     
+        <mkdir dir="${out}" />
+        
+        <copy todir="${out}">
+            <fileset dir="${src}">
+                <include name="**" />     
+                
+                <exclude name="safe/*.code" />       
+                <exclude name="**/.git*"/>
+            </fileset>
+        </copy>
+        
+        <concat destfile="${out}/version" append="no">
+            <filelist dir="${src}" files="version"/>
+            <footer>-dev [${git.hash}] (${now})</footer>
+        </concat>
+        <loadfile property="version" srcFile="${out}/version" />
+        
+        <echo>Published version: ${version} </echo>
+        
     </target>
     
+    
+    <target name="git.info">
+        <exec executable="git" outputproperty="git.hash" failonerror="true">
+            <arg value="log" />
+            <arg value="--pretty=%h" />
+            <arg value="-1" />
+        </exec>
+        <echo>Git hash: ${git.hash}</echo>
+    </target>
+    
+    <target name="check" depends="check.php" />
     
     <target name="check.php" description="PHP syntax check">
         <exec executable="${php}">
