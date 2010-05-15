@@ -1,0 +1,266 @@
+body{
+  font-size: 90%;
+  background-color: #000;
+  text-align: center;
+  font-family: Calibri, verdana,sans-serif;
+  margin: 5px;
+}
+
+a{
+  color: #0F67A1;
+}
+
+h1{
+  margin: 15px 0 15px 15px;
+  }
+  h1 em{
+    font-size: 26pt;
+    padding-right: 0.1em;
+  }
+
+h1 sup{
+  font-size: 14pt;
+  color: #0F67A1;
+}
+
+h2{
+  margin: 0 0 10px 0; padding:0;
+  font-size: 100%;
+  color: #0F67A1;
+  position: relative;
+  }
+  h2.loading{
+    background-image: url(loading.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+h3{
+  font-size: 12px;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+/* --- layout --- */
+
+#frame{
+  width: 650px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#header{
+  color: #FEFEFE;
+  position: relative;
+}
+
+#menu{
+  position: absolute;
+  top: 4px;
+  right: 0;
+}
+
+#body, #help{
+}
+
+#footer{
+  text-align: center;
+  margin: 0 10px;
+  font-size: 80%;
+  color: #eee;
+}
+
+#footer a{
+  color: #eee;
+}
+
+/* --- */
+
+.box{
+    
+  }
+  .box h2{
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#0D5995 none repeat scroll 0 0;
+    border:medium none;
+    color:#FFFFFF;
+    font-size: 115%;
+    margin:15px 0 0;
+    padding:6px 15px 4px 15px;
+  }
+  .box h2 span{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 80%;
+    }
+    .box h2 span a{
+      color: #fff;
+      text-decoration: none;
+    } 
+  
+  
+  .box .content{
+    padding: 10px;
+    margin: 0;
+    background-color: #eee;
+  }
+
+/* --- HELP --- */
+
+#help{
+  display: none;
+  margin: 0 0 10px 0;
+}
+
+#help p{
+  margin-left: 20px;
+  margin-right: 20px;  
+}
+
+#help h2{
+  margin: 0 !important;
+}
+
+#help p.intro{
+  font-style: italic;
+}
+
+/* --- CODE --- */
+
+textarea{
+  display: block;
+  width: 600px;
+  padding: 3px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 10pt;
+  /*line-height: 150%;*/
+  font-family: Consolas, 'Lucida Console', 'Monaco CE', fixed, monospace;
+  
+  border: solid #999 1px;
+  
+  background-image: url(textarea-bg.png);
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
+textarea:focus{
+  border-color: #000;
+}
+
+div.textarea{
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+#buttons{
+  margin: 10px 11px 0 11px;
+  padding: 10px 0 0 0;
+  text-align: center;
+  border-top: solid #999 1px;
+}
+
+#run{
+  padding: 5px 40px;
+  font-weight: bold;
+  color: #0F67A1;
+}
+
+#settings{
+  margin: 0 0 15px 0;
+  padding-top: 2px;
+  position: relative;
+}
+
+#settings label{
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 10px 0 0;
+}
+
+#settings select{
+  position: absolute;
+  right: 11px;
+  top: 0;
+  width: 150px;
+  padding: 1px 2px;
+  font-size: 9pt;  
+  border: solid #999 1px;
+  
+  background-image: url(textarea-bg.png);
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
+/* --- RESULT --- */
+
+#result .content{
+  margin: 0;
+  padding: 0;
+}
+
+#iframe_outer{
+  text-align: center;
+  padding: 2px 0 4px 0;
+}
+
+iframe{
+  display: block;
+  width: 642px;
+  margin: 0 auto;
+  height: 150px;
+  border: solid #fff 1px;
+}
+
+
+#error_msg{
+  display: none;
+  margin: 0 0 0 0;
+  background-color: #A50F24;
+  color: #fff;
+}
+
+#error_text{
+  padding: 7px 13px;
+}
+
+#error_clear{
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+#max{
+  display: none;
+}
+
+/* --- */
+
+.round{
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+.roundTop{
+  -moz-border-radius-topleft:         6px;
+  -moz-border-radius-topright:        6px;
+  -webkit-border-top-left-radius:     6px;
+  -webkit-border-top-right-radius:    6px;
+  border-radius-topleft:              6px;
+  border-radius-topright:             6px;
+}                                   
+.roundBottom{
+  -moz-border-radius-bottomleft:      6px;
+  -moz-border-radius-bottomright:     6px;
+  -webkit-border-bottom-left-radius:  6px;
+  -webkit-border-bottom-right-radius: 6px;
+  border-radius-bottomleft:           6px;
+  border-radius-bottomright:          6px;
+  border-top: none;
+}
+
+
