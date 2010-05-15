@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Ant build file for jQ-Probe
+    
+    Adam Horcica, adam@horcica.cz
+-->
+<project name="jQ-Probe" default="pub" basedir=".">
+
+    <description>
+        JQ-Probe build script
+    </description>
+    
+    <property name="php" location="c:/cmd/php/php.exe" />
+    
+    <!-- Directories -->
+    <property name="src" location="src"/>
+    <property name="out" location="output"/>
+    
+    <!-- Files -->
+    <property name="html_style" location="${style}/html.xsl"/>
+    
+    <!-- Misc -->
+    <tstamp>
+        <format property="date" pattern="dd.MM.yyyy HH:mm:ss" />
+    </tstamp>
+  
+  
+    <!-- Targets -->
+    
+    
+    <target name="pub" description="Prepare files for mail">
+    
+    </target>
+    
+    
+    <target name="check.php" description="PHP syntax check">
+        <exec executable="${php}">
+            <arg value="-v"/>
+        </exec>
+        <apply executable="${php}" failonerror="true" logError="false" searchpath="true">
+            <arg value="-l" />
+            <fileset dir="${src}">
+                <include name="**/*.php"/>
+            </fileset>
+        </apply>
+    </target>
+    
+    
+    <target name="clean" description="Remove all output file">
+        <delete dir="${out}" includeEmptyDirs="true" />
+    </target>
+
+</project>
