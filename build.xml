@@ -5,8 +5,8 @@
     JQ-Probe build script
     </description>
     
-    <property name="php" location="c:/cmd/php/php.exe" />
-    <property name="git" location="git" />
+    <property name="php" value="c:/cmd/php/php.exe" />
+    <property name="git" value="git" />
     
     <!-- Directories -->
     <property name="src" location="src"/>
@@ -42,11 +42,18 @@
             <filelist dir="${src}" files="version"/>
             <footer>-dev [${git.hash}] (${now})</footer>
         </concat>
+        <loadfile property="version.number" srcFile="${src}/version" />
         <loadfile property="version" srcFile="${out}/version" />
                 
         <!-- dev sign -->
-        <concat destfile="${out}/core/tpl/index.tpl.php" append="yes">
-            &lt;span id="dev-sign"&gt;test version ${version}&lt;/span&gt;
+        <concat destfile="${out}/core/tpl/index.tpl.php" append="no">
+            <filelist dir="${src}/core/tpl/" files="index.tpl.php"/>
+            <footer>
+                &lt;span id="dev-sign"&gt;test version ${version.number}-dev 
+                    [&lt;a href="http://github.com/ah01/jq-probe/commit/${git.hash}"&gt;${git.hash}&lt;/a&gt;]
+                    (${now})
+                &lt;/span&gt;
+            </footer>
         </concat>
         
         <echo>Published version: ${version} </echo>

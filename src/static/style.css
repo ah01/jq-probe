@@ -282,4 +282,8 @@ iframe{
     font-family: monospace;
     font-size: 12px;
 }
+#dev-sign a{
+    color: #D7132E;
+    text-decoration: none; 
+}
 
